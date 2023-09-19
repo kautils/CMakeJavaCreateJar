@@ -11,6 +11,9 @@
 
 ### example
 ```cmake
+
+include(CMakeJavaCreateJar.cmake)
+
 # cd ${CMAKE_CURRENT_LIST_DIR} && jar cf ${CMAKE_CURRENT_LIST_DIR}/obj_classes.jar -C obj/ "" 
 CMakeJavaCreateJar(
     JAR "path_to_jar"
@@ -25,10 +28,12 @@ CMakeJavaCreateJar(
         jar ${CMAKE_CURRENT_LIST_DIR}/libs_jars.jar uf -C libs/ f      
     }
 ]]
+
 CMakeJavaCreateJar(
     JAR "path_to_jar"
     OUTPUT ${CMAKE_CURRENT_LIST_DIR}/libs_jars.jar
     C_OPTION libs/
     GLOB RELATIVE ${CMAKE_CURRENT_LIST_DIR} libs/*.jar
 )
+
 ```
