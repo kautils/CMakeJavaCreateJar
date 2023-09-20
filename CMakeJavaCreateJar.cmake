@@ -17,7 +17,7 @@ git_clone(https://raw.githubusercontent.com/kautils/CMakeUpdatedFile/v0.0.1/CMak
 macro(CMakeJavaCreateJar)
     set(${PROJECT_NAME}_m_evacu ${m})
     set(m ${PROJECT_NAME}.CMakeJarDirectory)
-    list(APPEND ${m}_unsetter ${${m}_glob_mode} ${m}_UPDATED_ONLY ${m}_GLOB ${m}_GLOB_RECURSE ${m}_JAR ${m}_OUTPUT ${m}_WORKING_DIRECTORY ${m}_FILE ${m}_verbose ${m}_coption)
+    list(APPEND ${m}_unsetter ${m}_libs_jar ${${m}_glob_mode} ${m}_UPDATED_ONLY ${m}_GLOB ${m}_GLOB_RECURSE ${m}_JAR ${m}_OUTPUT ${m}_WORKING_DIRECTORY ${m}_FILE ${m}_verbose ${m}_coption)
     cmake_parse_arguments( ${m} "UPDATED_ONLY;DEBUG_VERBOSE" "JAR;OUTPUT;C_OPTION;FILE;WORKING_DIRECTORY" "GLOB;GLOB_RECURSE" ${ARGV})
     
     if(NOT DEFINED ${m}_OUTPUT)
@@ -49,8 +49,8 @@ macro(CMakeJavaCreateJar)
     endif()
 
     
+    file(WRITE "${${m}_OUTPUT}" "")
     if(DEFINED ${m}_glob_mode)
-        file(WRITE libs_jars.jar "")
         file(${${m}_glob_mode} ${m}_libs_jar ${${m}_${${m}_glob_mode}})
         
         if(${${m}_UPDATED_ONLY})
@@ -74,8 +74,6 @@ macro(CMakeJavaCreateJar)
             endif()
         endforeach()
 
-#        if(${${m}_UPDATED_ONLY})
-#        endif()
         CMakeUpdatedFile(WRITE FILES ${m}_libs_jar)
         
         
